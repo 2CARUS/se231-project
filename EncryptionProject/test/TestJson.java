@@ -26,6 +26,21 @@ public class TestJson implements Serializable {
 
     }
 
+    /**
+     * Information regarding parsing these things is found here
+     *
+     * HTTP://WNW.geeksforgeeks.org/parse-json-java/
+     *
+     * Though the website uses a different library. The documentation for this
+     * library we're using is here
+     *
+     * HTTP://stleary.github.io/JSON-java/index.HTML
+     *
+     *
+     * Here's a stackoverflow about nesting JSON's
+     *
+     * HTTP://stackoverflow.com/a/22042951
+     */
     void run() {
         JSONObject jo = new JSONObject();
         jo.put("firstName", "John");
