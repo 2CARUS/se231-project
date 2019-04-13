@@ -15,13 +15,13 @@ import java.util.List;
  */
 public class Facade {
 
-    private static Facade encryptions;
+    private static Facade facade;
 
     public static Facade instance() {
-        if (encryptions == null) {
-            encryptions = new Facade();
+        if (facade == null) {
+            facade = new Facade();
         }
-        return encryptions;
+        return facade;
     }
 
     private final List standards;

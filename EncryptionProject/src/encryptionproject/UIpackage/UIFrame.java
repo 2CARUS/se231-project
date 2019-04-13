@@ -9,7 +9,7 @@ package encryptionproject.UIpackage;
  *
  * @author ckopp
  */
-public abstract class UIframe extends javax.swing.JFrame {
+public abstract class UIFrame extends javax.swing.JFrame {
 
     /**
      * Calls on JFrame.dispose() to make the frame disappear

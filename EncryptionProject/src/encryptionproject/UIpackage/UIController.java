@@ -11,7 +11,7 @@ package encryptionproject.UIpackage;
  */
 public class UIController {
 
-    private UIframe mainUI;
+    private UIFrame mainUI;
 
     private UIController() {
     }
@@ -27,7 +27,7 @@ public class UIController {
      * @param previousFrame
      * @param nextFrame
      */
-    public void displayNextFrame(UIframe previousFrame, UIframe nextFrame) {
+    public void displayNextFrame(UIFrame previousFrame, UIFrame nextFrame) {
         previousFrame.dispose();
         nextFrame.render();
     }
@@ -37,7 +37,7 @@ public class UIController {
      *
      * @param mainMenuUI
      */
-    public void setMain(UIframe mainMenuUI) {
+    public void setMain(UIFrame mainMenuUI) {
         this.mainUI = mainMenuUI;
     }
 

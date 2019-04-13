@@ -11,7 +11,7 @@ import encryptionproject.Facade;
  *
  * @author ckopp
  */
-public class MainMenuUI extends UIframe {
+public class MainMenuUI extends UIFrame {
 
     /**
      * Creates new form MainMenu
@@ -106,7 +106,7 @@ public class MainMenuUI extends UIframe {
         if (!Facade.instance().validSelection(selection)) {
             Popup.popupMessage("Unsupported Selection. Please choose something else");
         } else {
-            // Display the appropraite UIframe
+            // Display the appropraite UIFrame
             UIController.getInstance().displayNextFrame(this, new AesMenuUI());
         }
     }//GEN-LAST:event_confirmButtonActionPerformed

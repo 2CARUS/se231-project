@@ -9,7 +9,7 @@ package encryptionproject.UIpackage;
  *
  * @author ckopp
  */
-public class AesMenuUI extends UIframe {
+public class AesMenuUI extends UIFrame {
 
     /**
      * Creates new form AESform
@@ -50,6 +50,11 @@ public class AesMenuUI extends UIframe {
 
         decButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         decButton.setText("Decryption");
+        decButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,7 +90,13 @@ public class AesMenuUI extends UIframe {
 
     private void encButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encButtonActionPerformed
         // TODO add your handling code here:
+        UIController.getInstance().displayNextFrame(this, new AesEncryptionUI());
     }//GEN-LAST:event_encButtonActionPerformed
+
+    private void decButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decButtonActionPerformed
+        // TODO add your handling code here:
+        UIController.getInstance().displayNextFrame(this, new AesDecryptionUI());
+    }//GEN-LAST:event_decButtonActionPerformed
 
     /**
      * @param args the command line arguments
