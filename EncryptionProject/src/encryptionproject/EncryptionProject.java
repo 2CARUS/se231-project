@@ -5,15 +5,13 @@
  */
 package encryptionproject;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.*;
-
 /**
  *
  * @author ckopp
  */
 public class EncryptionProject {
+
+    private Facade facade;
 
     /**
      * Is run at the beginning of the program. Though it is convention to do
@@ -25,18 +23,8 @@ public class EncryptionProject {
      */
     public static void main(String[] args) {
 
-        try {
-            new EncryptionProject().run();
-        } catch (Exception ex) {
-            Logger.getLogger(EncryptionProject.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * This is the main application logic of the program
-     */
-    private void run() {
+        UIController.getInstance().setMain(new MainMenuUI());
+        UIController.getInstance().startUI();
 
     }
-
 }

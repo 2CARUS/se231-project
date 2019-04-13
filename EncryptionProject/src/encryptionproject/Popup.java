@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author ckopp
  */
-public class Dialogue {
+public class Popup {
 
     /**
      * Takes in a Message as a String and displays it to the user as a
@@ -19,9 +19,9 @@ public class Dialogue {
      * inputs into the pane is returned as a String to the caller
      *
      * @param message
-     * @return
+     * @return Response from user interaction with dialogue box
      */
-    String promptMessage(String message) {
+    public static String promptMessage(String message) {
         return JOptionPane.showInputDialog(message);
     }
 
@@ -33,9 +33,9 @@ public class Dialogue {
      *
      * @param message
      * @param initial
-     * @return
+     * @return Response from user interaction with dialogue box
      */
-    String promptMessageInitial(String message, String initial) {
+    public static String promptMessageInitial(String message, String initial) {
         return JOptionPane.showInputDialog(message, initial);
     }
 
@@ -45,7 +45,7 @@ public class Dialogue {
      *
      * @param message
      */
-    void popupMessage(String message) {
+    public static void popupMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 }

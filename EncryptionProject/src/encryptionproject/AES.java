@@ -24,16 +24,16 @@ public class AES {
      * password. This password is run through SHA-256 hashing to produce the
      * actual key with which the input string is encrypted with
      *
-     * @param inputString
+     * @param plainText
      * @param password
-     * @return
+     * @return Encrypted inputString using the given password and AES encryption
      * @throws Exception
      */
-    private String encrypt(String inputString, String password) throws Exception {
+    private String encrypt(String plainText, String password) throws Exception {
         SecretKeySpec key = generatekey(password);
         Cipher cipher = Cipher.getInstance(AES.AES_STRING);
         cipher.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encVal = cipher.doFinal(inputString.getBytes());
+        byte[] encVal = cipher.doFinal(plainText.getBytes());
         String encryptValue;
         encryptValue = Base64.getEncoder().encodeToString(encVal);
         return encryptValue;
@@ -45,16 +45,16 @@ public class AES {
      * SHA-256 hashkey equivalent and is used to decode the ciphertext. This
      * string is then returned
      *
-     * @param outputString
+     * @param cipherText
      * @param password
      * @return
      * @throws Exception
      */
-    private String decrypt(String outputString, String password) throws Exception {
+    private String decrypt(String cipherText, String password) throws Exception {
         SecretKeySpec key = generatekey(password);
         Cipher cipher = Cipher.getInstance(AES.AES_STRING);
         cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] decodevalue = Base64.getDecoder().decode(outputString);
+        byte[] decodevalue = Base64.getDecoder().decode(cipherText);
         byte[] decVal = cipher.doFinal(decodevalue);
         String decryptValue = new String(decVal);
         return decryptValue;
