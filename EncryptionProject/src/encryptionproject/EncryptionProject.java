@@ -5,7 +5,9 @@
  */
 package encryptionproject;
 
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.*;
 
 /**
  *
@@ -14,27 +16,27 @@ import javax.swing.JOptionPane;
 public class EncryptionProject {
 
     /**
+     * Is run at the beginning of the program. Though it is convention to do
+     * application logic in the Main method for small programs, one can run into
+     * issues with main being a Static method and attempting to utilize other
+     * classes and other helper methods
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        new EncryptionProject().run();
+
+        try {
+            new EncryptionProject().run();
+        } catch (Exception ex) {
+            Logger.getLogger(EncryptionProject.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    /**
+     * This is the main application logic of the program
+     */
     private void run() {
 
-    }
-
-    String input(String message) {
-        return JOptionPane.showInputDialog(message);
-    }
-
-    String inputDefault(String message, String initial) {
-        return JOptionPane.showInputDialog(message, initial);
-    }
-
-    void popup(String message) {
-        JOptionPane.showMessageDialog(null, message);
     }
 
 }
