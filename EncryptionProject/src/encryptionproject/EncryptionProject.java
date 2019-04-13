@@ -5,13 +5,14 @@
  */
 package encryptionproject;
 
+import encryptionproject.UIpackage.MainMenuUI;
+import encryptionproject.UIpackage.UIController;
+
 /**
  *
  * @author ckopp
  */
 public class EncryptionProject {
-
-    private Facade facade;
 
     /**
      * Is run at the beginning of the program. Though it is convention to do

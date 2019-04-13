@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package encryptionproject;
+package encryptionproject.UIpackage;
 
 /**
  *
@@ -27,7 +27,7 @@ public class UIController {
      * @param previousFrame
      * @param nextFrame
      */
-    void displayNextFrame(UIframe previousFrame, UIframe nextFrame) {
+    public void displayNextFrame(UIframe previousFrame, UIframe nextFrame) {
         previousFrame.dispose();
         nextFrame.render();
     }
@@ -37,14 +37,14 @@ public class UIController {
      *
      * @param mainMenuUI
      */
-    void setMain(UIframe mainMenuUI) {
+    public void setMain(UIframe mainMenuUI) {
         this.mainUI = mainMenuUI;
     }
 
     /**
      * Starts the UI at the mainUI frame
      */
-    void startUI() {
+    public void startUI() {
         this.mainUI.render();
     }
 

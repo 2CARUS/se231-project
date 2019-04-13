@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author ckopp
  */
-class Facade {
+public class Facade {
 
     private static Facade encryptions;
 
@@ -57,7 +57,7 @@ class Facade {
      * @param selection
      * @return whether a given selection of security standard is valid or not
      */
-    boolean validSelection(String selection) {
+    public boolean validSelection(String selection) {
         return "AES".equals(selection);
     }
 

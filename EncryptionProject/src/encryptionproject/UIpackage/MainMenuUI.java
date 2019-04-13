@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package encryptionproject;
+package encryptionproject.UIpackage;
+
+import encryptionproject.Facade;
 
 /**
  *
@@ -104,6 +106,7 @@ public class MainMenuUI extends UIframe {
         if (!Facade.instance().validSelection(selection)) {
             Popup.popupMessage("Unsupported Selection. Please choose something else");
         } else {
+            // Display the appropraite UIframe
             UIController.getInstance().displayNextFrame(this, new AesMenuUI());
         }
     }//GEN-LAST:event_confirmButtonActionPerformed

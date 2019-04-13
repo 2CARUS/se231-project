@@ -1,4 +1,4 @@
-package encryptionproject;
+package encryptionproject.UIpackage;
 
 import javax.swing.JOptionPane;
 
