@@ -7,6 +7,8 @@ package encryptionproject;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -15,9 +17,7 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @author ckopp
  */
-public class AES {
-
-    private final static String AES_STRING = "AES";
+public class AES extends EncryptionStandard {
 
     /**
      * Takes in an inputString to be encoded with AES along with a user defined
@@ -26,18 +26,23 @@ public class AES {
      *
      * @param plainText
      * @param password
-     * @return Encrypted inputString using the given password and AES encryption
-     * @throws Exception
+     * @return Encrypted plaintext using the given password and AES encryption
      */
-    private String encrypt(String plainText, String password) throws Exception {
-        SecretKeySpec key = generatekey(password);
-        Cipher cipher = Cipher.getInstance(AES.AES_STRING);
-        cipher.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encVal = cipher.doFinal(plainText.getBytes());
-        String encryptValue;
-        encryptValue = Base64.getEncoder().encodeToString(encVal);
-        return encryptValue;
+    @Override
+    public String encrypt(String plainText, String password) {
+        String encryptValue = "";
+        try {
+            SecretKeySpec key = generatekey(password);
+            Cipher cipher = Cipher.getInstance(this.asString());
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] encVal = cipher.doFinal(plainText.getBytes());
 
+            encryptValue = Base64.getEncoder().encodeToString(encVal);
+
+        } catch (Exception ex) {
+            Logger.getLogger(AES.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return encryptValue;
     }
 
     /**
@@ -47,16 +52,23 @@ public class AES {
      *
      * @param cipherText
      * @param password
-     * @return
-     * @throws Exception
+     * @return decrypted cipherText into plaintext
      */
-    private String decrypt(String cipherText, String password) throws Exception {
-        SecretKeySpec key = generatekey(password);
-        Cipher cipher = Cipher.getInstance(AES.AES_STRING);
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] decodevalue = Base64.getDecoder().decode(cipherText);
-        byte[] decVal = cipher.doFinal(decodevalue);
-        String decryptValue = new String(decVal);
+    @Override
+    public String decrypt(String cipherText, String password) {
+        String decryptValue = "";
+        try {
+
+            SecretKeySpec key = generatekey(password);
+            Cipher cipher = Cipher.getInstance(this.asString());
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            byte[] decodevalue = Base64.getDecoder().decode(cipherText);
+            byte[] decVal = cipher.doFinal(decodevalue);
+            decryptValue = new String(decVal);
+
+        } catch (Exception ex) {
+            Logger.getLogger(AES.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return decryptValue;
     }
 
@@ -65,7 +77,7 @@ public class AES {
      * hash that will be then be returned at the AES symmetric key
      *
      * @param password
-     * @return
+     * @return SecretKey
      * @throws Exception
      */
     private SecretKeySpec generatekey(String password) throws Exception {
@@ -73,7 +85,18 @@ public class AES {
         byte[] bytes = password.getBytes("UTF-8");
         digest.update(bytes, 0, bytes.length);
         byte[] key = digest.digest();
-        SecretKeySpec secretKeySpec = new SecretKeySpec(key, AES.AES_STRING);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key, this.asString());
         return secretKeySpec;
+    }
+
+    /**
+     * Returns itself as an all caps string literal representing the standard
+     * code to represent this encryption standard
+     *
+     * @return AES
+     */
+    @Override
+    public String asString() {
+        return "AES";
     }
 }

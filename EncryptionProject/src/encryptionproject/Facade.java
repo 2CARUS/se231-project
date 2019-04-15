@@ -7,7 +7,7 @@ package encryptionproject;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
+import org.json.JSONObject;
 
 /**
  *
@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class Facade {
 
+    /**
+     * Singleton pattern
+     */
     private static Facade facade;
 
     public static Facade instance() {
@@ -24,12 +27,20 @@ public class Facade {
         return facade;
     }
 
-    private final List standards;
+    /**
+     * List of supported encryption standards
+     */
+    private final LinkedList<EncryptionStandard> standards;
 
+    private EncryptionStandard chosenStandard;
+
+    /**
+     * Singleton constructor
+     */
     private Facade() {
         this.standards = new LinkedList();
-        standards.add("AES");
-//        standards.add("RSA");
+        standards.add(new AES());
+//        standards.add(new RSA());
 //          add more standards here
 
     }
@@ -52,13 +63,56 @@ public class Facade {
 
     /**
      * Currently, only AES is supported. So this will return true if the
-     * inputted string selection.equals("AES")
+     * inputted string selection.equals("AES"). However, it does do a full
+     * linear search for the standard
      *
      * @param selection
      * @return whether a given selection of security standard is valid or not
      */
-    public boolean validSelection(String selection) {
-        return "AES".equals(selection);
+    public boolean validStandard(String selection) {
+        boolean valid = false;
+        Iterator itr = standards.iterator();
+
+        while (itr.hasNext()) {
+            String curSelection = itr.next().toString();
+            if (selection.equals(curSelection)) {
+                valid = true;
+                break;
+            }
+        }
+
+        return valid;
+    }
+
+    /**
+     * Chooses the encryption standard; right now only AES supported
+     *
+     * @param selection
+     */
+    public void chooseStandard(String selection) {
+        if (validStandard(selection)) {
+            this.chosenStandard = new AES();
+        }
+    }
+
+    /**
+     * Takes in the plaintext and the password used to encrypt it. This then
+     * calls upon the encryption method of the chosen encryption standard. It
+     * takes the appropriate information, places it into a JSON, and returns it
+     *
+     * @param plaintext
+     * @param password
+     * @return a JSONObject with keys "success", "filename", and others
+     * conditionally
+     */
+    public JSONObject startEncryption(String plaintext, String password) {
+        JSONObject result = new JSONObject();
+        String ciphertext = this.chosenStandard.encrypt(plaintext, password);
+
+//        --this works well System.out.println(ciphertext);
+        result.put("ciphertext", ciphertext);
+        result.put("success", true);
+        return result;
     }
 
 }
