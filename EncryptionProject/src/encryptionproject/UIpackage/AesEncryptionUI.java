@@ -5,6 +5,10 @@
  */
 package encryptionproject.UIpackage;
 
+import encryptionproject.Facade;
+import java.awt.event.KeyEvent;
+import org.json.*;
+
 /**
  *
  * @author ckopp
@@ -27,21 +31,130 @@ public class AesEncryptionUI extends UIFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        subtitle1Label = new javax.swing.JLabel();
+        editorScrollPane = new javax.swing.JScrollPane();
+        plaintextEditorPane = new javax.swing.JEditorPane();
+        aesPasswordField = new javax.swing.JPasswordField();
+        subtitle2Label = new javax.swing.JLabel();
+        encButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setText("AES Encryption");
+
+        subtitle1Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subtitle1Label.setText("Please enter the text you wish to encrypt");
+
+        plaintextEditorPane.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        editorScrollPane.setViewportView(plaintextEditorPane);
+
+        aesPasswordField.setText("password123");
+        aesPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aesPasswordFieldActionPerformed(evt);
+            }
+        });
+        aesPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aesPasswordFieldKeyPressed(evt);
+            }
+        });
+
+        subtitle2Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        subtitle2Label.setText("Please enter the key phrase that will be used for encryption");
+
+        encButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        encButton.setText("Encryption");
+        encButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encButtonActionPerformed(evt);
+            }
+        });
+        encButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                encButtonKeyPressed(evt);
+            }
+        });
+
+        backButton.setText("< Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editorScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(subtitle1Label, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(aesPasswordField)
+                    .addComponent(subtitle2Label, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(encButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel)
+                .addGap(18, 18, 18)
+                .addComponent(subtitle1Label)
+                .addGap(18, 18, 18)
+                .addComponent(editorScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(subtitle2Label)
+                .addGap(18, 18, 18)
+                .addComponent(aesPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(encButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aesPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aesPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aesPasswordFieldActionPerformed
+
+    private void encButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encButtonActionPerformed
+        // TODO add your handling code here:
+        this.startEncryption();
+    }//GEN-LAST:event_encButtonActionPerformed
+
+    private void encButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_encButtonKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_encButtonKeyPressed
+
+    private void aesPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aesPasswordFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.startEncryption();
+        }
+    }//GEN-LAST:event_aesPasswordFieldKeyPressed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        UIController.getInstance().displayNextFrame(this, new AesMenuUI());
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +192,36 @@ public class AesEncryptionUI extends UIFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField aesPasswordField;
+    private javax.swing.JButton backButton;
+    private javax.swing.JScrollPane editorScrollPane;
+    private javax.swing.JButton encButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JEditorPane plaintextEditorPane;
+    private javax.swing.JLabel subtitle1Label;
+    private javax.swing.JLabel subtitle2Label;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void startEncryption() {
+        String plaintext = this.plaintextEditorPane.getText();
+        String password = new String(this.aesPasswordField.getPassword());
+
+        JSONObject result = Facade.instance().startEncryption(plaintext, password);
+
+        if ((boolean) (result.get("success"))) {
+            /**
+             * - Display an output form with the ciphertext in it
+             *
+             * - prompt the user to either save to file or simply copy it to
+             * their clipboard and close the window
+             *
+             * - Options on buttons are "Save to File" and "Close Window"
+             *
+             * - if saved, save as JSON with ciphertext, passwordUsed
+             *
+             */
+        }
+
+    }
 }

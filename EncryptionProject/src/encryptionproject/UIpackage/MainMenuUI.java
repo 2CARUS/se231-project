@@ -103,10 +103,11 @@ public class MainMenuUI extends UIFrame {
         String selection = (String) this.encryptionComboBox.getSelectedItem();
 
         // For now, only AES is supported
-        if (!Facade.instance().validSelection(selection)) {
+        if (!Facade.instance().validStandard(selection)) {
             Popup.popupMessage("Unsupported Selection. Please choose something else");
         } else {
             // Display the appropraite UIFrame
+            Facade.instance().chooseStandard(selection);
             UIController.getInstance().displayNextFrame(this, new AesMenuUI());
         }
     }//GEN-LAST:event_confirmButtonActionPerformed

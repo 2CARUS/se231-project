@@ -14,7 +14,7 @@ public abstract class UIFrame extends javax.swing.JFrame {
     /**
      * Calls on JFrame.dispose() to make the frame disappear
      */
-    void coneal() {
+    void conceal() {
         this.dispose();
     }
 
