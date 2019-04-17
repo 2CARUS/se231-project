@@ -5,8 +5,6 @@
  */
 package encryptionproject.UIpackage;
 
-import encryptionproject.Facade;
-
 /**
  *
  * @author ckopp
@@ -14,7 +12,7 @@ import encryptionproject.Facade;
 public class MainMenuUI extends UIFrame {
 
     /**
-     * Creates new form MainMenu
+     * Creates new form AESform
      */
     public MainMenuUI() {
         initComponents();
@@ -31,30 +29,38 @@ public class MainMenuUI extends UIFrame {
 
         titleLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
-        encryptionComboBox = new javax.swing.JComboBox<>();
-        confirmButton = new javax.swing.JButton();
+        encButton = new javax.swing.JButton();
+        decButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        titleLabel.setText("Main Menu");
+        titleLabel.setText("AES Block Cipher");
 
         descriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        descriptionLabel.setText("Please choose the encryption standard you wish to use");
+        descriptionLabel.setText("Please choose whether you are encrypting or decrypting");
 
-        encryptionComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        encryptionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AES", "RSA", "CAESER" }));
-        encryptionComboBox.addActionListener(new java.awt.event.ActionListener() {
+        encButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        encButton.setText("Encryption");
+        encButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                encryptionComboBoxActionPerformed(evt);
+                encButtonActionPerformed(evt);
             }
         });
 
-        confirmButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        confirmButton.setText("Confirm");
-        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+        decButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        decButton.setText("Decryption");
+        decButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
+                decButtonActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("< Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -65,16 +71,17 @@ public class MainMenuUI extends UIFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(encryptionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(encButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmButton))
+                        .addComponent(decButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLabel)
-                            .addComponent(descriptionLabel))
+                            .addComponent(backButton))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,32 +92,30 @@ public class MainMenuUI extends UIFrame {
                 .addComponent(descriptionLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(encryptionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(encButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void encryptionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptionComboBoxActionPerformed
+    private void encButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_encryptionComboBoxActionPerformed
+        UIController.getInstance().displayNextFrame(this, new EncryptionUI());
+    }//GEN-LAST:event_encButtonActionPerformed
 
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+    private void decButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decButtonActionPerformed
+        // TODO add your handling code here:
+        UIController.getInstance().displayNextFrame(this, new DecryptionUI());
+    }//GEN-LAST:event_decButtonActionPerformed
 
-        //get selection from combobox
-        String selection = (String) this.encryptionComboBox.getSelectedItem();
-
-        // For now, only AES is supported
-        if (!Facade.instance().validStandard(selection)) {
-            Popup.popupMessage("Unsupported Selection. Please choose something else");
-        } else {
-            // Display the appropraite UIFrame
-            Facade.instance().chooseStandard(selection);
-            UIController.getInstance().displayNextFrame(this, new AesMenuUI());
-        }
-    }//GEN-LAST:event_confirmButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        UIController.getInstance().displayNextFrame(this, new SelectionMenuUI());
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +144,12 @@ public class MainMenuUI extends UIFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -149,10 +160,10 @@ public class MainMenuUI extends UIFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton confirmButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton decButton;
     private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JComboBox<String> encryptionComboBox;
+    private javax.swing.JButton encButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
-
 }

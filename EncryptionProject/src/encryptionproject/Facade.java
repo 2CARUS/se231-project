@@ -109,9 +109,31 @@ public class Facade {
         JSONObject result = new JSONObject();
         String ciphertext = this.chosenStandard.encrypt(plaintext, password);
 
-//        --this works well System.out.println(ciphertext);
+        // testing ciphertext
+//        System.out.println(ciphertext);
+        result.put("keyUsed", password);
         result.put("ciphertext", ciphertext);
-        result.put("success", true);
+        result.put("successfulEncryption", true);
+
+        return result;
+    }
+
+    /**
+     *
+     * @param ciphertext
+     * @param password
+     * @return
+     */
+    public JSONObject startDecryption(String ciphertext, String password) {
+        JSONObject result = new JSONObject();
+        String plaintext = this.chosenStandard.decrypt(ciphertext, password);
+
+        // testing ciphertext
+//        System.out.println(ciphertext);
+        result.put("keyUsed", password);
+        result.put("plaintext", plaintext);
+        result.put("successfulDecryption", true);
+
         return result;
     }
 

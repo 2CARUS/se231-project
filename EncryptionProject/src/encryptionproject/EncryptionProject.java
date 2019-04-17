@@ -5,7 +5,7 @@
  */
 package encryptionproject;
 
-import encryptionproject.UIpackage.MainMenuUI;
+import encryptionproject.UIpackage.SelectionMenuUI;
 import encryptionproject.UIpackage.UIController;
 
 /**
@@ -24,7 +24,7 @@ public class EncryptionProject {
      */
     public static void main(String[] args) {
 
-        UIController.getInstance().setMain(new MainMenuUI());
+        UIController.getInstance().setMain(new SelectionMenuUI());
         UIController.getInstance().startUI();
 
     }
