@@ -1,4 +1,4 @@
 {
-    "successfulEncryption": true,
-    "ciphertext": "eQLCv5WdJgC/49/Qpzs7Afm2y+YwAUYcC5wAOy+vaxs="
+    "successfulDecryption": true,
+    "plaintext": "Some text that I wrote"
 }
