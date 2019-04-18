@@ -20,9 +20,9 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES extends EncryptionStandard {
 
     /**
-     * Takes in an inputString to be encoded with AES along with a user defined
-     * password. This password is run through SHA-256 hashing to produce the
-     * actual key with which the input string is encrypted with
+     * Takes in an plaintext to be encoded with AES along with a user defined
+     * password. This password is run through SHA-256 hashing to produce the actual
+     * key with which the plaintext is encrypted with
      *
      * @param plainText
      * @param password
@@ -47,8 +47,8 @@ public class AES extends EncryptionStandard {
 
     /**
      * Takes in a ciphertext and a password. The password is changed into its
-     * SHA-256 hashkey equivalent and is used to decode the ciphertext. This
-     * string is then returned
+     * SHA-256 hashkey equivalent and is used to decode the ciphertext. This string
+     * is then returned
      *
      * @param cipherText
      * @param password
@@ -73,8 +73,8 @@ public class AES extends EncryptionStandard {
     }
 
     /**
-     * Takes in a string password specified by the user and generates a SHA-256
-     * hash that will be then be returned at the AES symmetric key
+     * Takes in a string password specified by the user and generates a SHA-256 hash
+     * that will be then be returned at the AES symmetric key
      *
      * @param password
      * @return SecretKey
@@ -90,8 +90,8 @@ public class AES extends EncryptionStandard {
     }
 
     /**
-     * Returns itself as an all caps string literal representing the standard
-     * code to represent this encryption standard
+     * Returns itself as an all caps string literal representing the standard code
+     * to represent this encryption standard
      *
      * @return AES
      */
