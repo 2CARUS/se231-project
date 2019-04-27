@@ -1,4 +1,5 @@
 {
-    "successfulDecryption": true,
-    "plaintext": "Some text that I wrote"
+    "ciphertext": "3uLfHePnnFoYEq96gBJXmA==",
+    "successfulEncryption": true,
+    "keyUsed": "password123"
 }

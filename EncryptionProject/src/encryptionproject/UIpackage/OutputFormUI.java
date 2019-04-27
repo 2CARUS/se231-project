@@ -125,7 +125,7 @@ public class OutputFormUI extends UIFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        UIController.getInstance().displayNextFrame(this, new EncryptionUI());
+        UIController.getInstance().displayNextFrame(this, new MainMenuUI());
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void revealToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revealToggleButtonActionPerformed
