@@ -104,7 +104,7 @@ public class AES extends EncryptionStandard {
              */
             byte[] decVal = cipher.doFinal(decodevalue);
             /**
-             * turns the byte array into a string, which is hte plaintext
+             * turns the byte array into a string, which is the plaintext
              */
             plaintext = new String(decVal);
 

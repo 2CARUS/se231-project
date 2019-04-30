@@ -1,5 +1,5 @@
 {
-    "ciphertext": "3uLfHePnnFoYEq96gBJXmA==",
-    "successfulEncryption": true,
-    "keyUsed": "password123"
+    "successfulDecryption": true,
+    "keyUsed": "password123",
+    "plaintext": "Some text"
 }
