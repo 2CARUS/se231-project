@@ -132,7 +132,11 @@ public class Facade {
 //        System.out.println(ciphertext);
         result.put("keyUsed", password);
         result.put("plaintext", plaintext);
-        result.put("successfulDecryption", true);
+        if ("".equals(plaintext)) {
+            result.put("successfulDecryption", false);
+        } else {
+            result.put("successfulDecryption", true);
+        }
 
         return result;
     }
